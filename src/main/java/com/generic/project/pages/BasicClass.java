@@ -22,7 +22,7 @@ public class BasicClass {
 	public WebDriver driver;
 	String downloadPath = System.getProperty("user.dir") + File.separator + "src"
 			+ File.separator + "test" + File.separator + "resources" + File.separator +"Download";
-
+	
 	public WebDriver launch_browser(String browserType) {
 
 		if (browserType.equalsIgnoreCase("Chrome")) {
@@ -93,9 +93,11 @@ public class BasicClass {
 		}
 		return driver;
 	}
+	
 	public void login() {
 		logger.info("Inside login function");
 		driver.manage().window().maximize();
+		driver.get("https://www.saama.com/");
 	}
 
 	public void logout() {

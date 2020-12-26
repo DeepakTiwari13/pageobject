@@ -1,20 +1,12 @@
 package com.generic.project.util;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.generic.project.pages.BasicClass;
-
-import io.qameta.allure.Attachment;
-
-public class ListenerFile extends BasicClass implements ITestListener {
+public class ListenerFile implements ITestListener {
 	
-	WebDriver driver;
     static Logger logger = Logger.getLogger(ListenerFile.class); 
      
     @Override		
@@ -35,7 +27,6 @@ public class ListenerFile extends BasicClass implements ITestListener {
     @Override
 	public void onTestFailure(ITestResult result) {
     	logger.info("The name of the testcase failed is :" + result.getName());
-    	ITestContext iT = result.getTestContext();
  	}
 
    @Override

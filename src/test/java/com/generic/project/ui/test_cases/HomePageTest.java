@@ -1,13 +1,17 @@
 package com.generic.project.ui.test_cases;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Arrays;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -49,7 +53,6 @@ public class HomePageTest extends BasicClass{
 		SingleTon sTon1 = SingleTon.getInstance();
 		int hCode1 = sTon1.hashCode();
 		logger.info("Hash code for Singleton class object one "+hCode1);
-		read.readCsvLineByLine("home_page");
 		act.attachScreenShotToReport();
 	}
 	
@@ -87,6 +90,18 @@ public class HomePageTest extends BasicClass{
 		act.attachScreenShotToReport();
 	}
 	
+	@Link("https://www.atlassian.com/software/jira5")
+	@Description("Description for parameterized test 5")
+	@Test(priority=5,dataProvider = "csvData")
+	public void testFive(Object getData) {
+		logger.info("Inside parameterized test five ");
+		logger.info("Data from csv file"+getData);
+	}
+	
+	@DataProvider(name = "csvData")
+	public Object[] sendData() throws FileNotFoundException {
+		return read.readCsvLineByLine("home_page");
+	}
 	@AfterTest
 	public void cleanUp() {
 		db.closeDbConnection(conn, stmt, rs, pStmt);
