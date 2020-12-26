@@ -37,12 +37,12 @@
 			<version>3.141.59</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
-		<!-- <dependency> 
+		<dependency> 
 			<groupId>org.testng</groupId>
 			 <artifactId>testng</artifactId> 
 			<version>7.1.0</version> 
 			<scope>test</scope> 
-		</dependency> -->
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
