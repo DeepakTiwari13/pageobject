@@ -8,16 +8,19 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.generic.project.pages.BasicClass;
+
 import io.qameta.allure.Attachment;
 
-public class ListenerFile implements ITestListener {
+public class ListenerFile extends BasicClass implements ITestListener {
 	
+	WebDriver driver;
     static Logger logger = Logger.getLogger(ListenerFile.class); 
      
     @Override		
     public void onStart(ITestContext result) {					
     	logger.info("The name of the testcase starting is :" + result.getName());
-     }	
+    }	
     
     @Override		
     public void onFinish(ITestContext result) {					
@@ -33,18 +36,9 @@ public class ListenerFile implements ITestListener {
 	public void onTestFailure(ITestResult result) {
     	logger.info("The name of the testcase failed is :" + result.getName());
     	ITestContext iT = result.getTestContext();
-     	WebDriver dr = (WebDriver) iT.getAttribute("driver");
-    	attachScreenShotToReport(dr);
  	}
-    
-    @Attachment
-    byte[] attachScreenShotToReport(WebDriver wd){
-    	TakesScreenshot photo = ((TakesScreenshot) wd);
-		byte[] file = photo.getScreenshotAs(OutputType.BYTES);
-		return file;
-    }
 
-	@Override
+   @Override
 	public void onTestStart(ITestResult result) {
 		
 	}

@@ -50,7 +50,7 @@ public class HomePageTest extends BasicClass{
 		int hCode1 = sTon1.hashCode();
 		logger.info("Hash code for Singleton class object one "+hCode1);
 		read.readCsvLineByLine("home_page");
-		act.takeScreenshot();
+		act.attachScreenShotToReport();
 	}
 	
 	@Link("https://www.atlassian.com/software/jira2")
@@ -61,7 +61,7 @@ public class HomePageTest extends BasicClass{
 		SingleTon sTon2 = SingleTon.getInstance();
 		int hCode2 = sTon2.hashCode();
 		logger.info("Hash code for Singleton class object two "+hCode2);
-		act.takeScreenshot();
+		act.attachScreenShotToReport();
 	//	db.getDBResultUsingPreparedStatement(conn, pStmt, rs, query, val1, val2);
 	}
 	
@@ -73,7 +73,18 @@ public class HomePageTest extends BasicClass{
 		SingleTon sTon3 = SingleTon.getInstance();
 		int hCode3 = sTon3.hashCode();
 		logger.info("Hash code for Singleton class object three "+hCode3);
-		act.takeScreenshot();
+		act.attachScreenShotToReport();
+	}
+	
+	@Link("https://www.atlassian.com/software/jira4")
+	@Description("Description for assignment test 4")
+	@Test(priority=4)
+	public void testFour() {
+		logger.info("Inside test four ");
+		SingleTon sTon4 = SingleTon.getInstance();
+		int hCode4 = sTon4.hashCode();
+		logger.info("Hash code for Singleton class object three "+hCode4);
+		act.attachScreenShotToReport();
 	}
 	
 	@AfterTest

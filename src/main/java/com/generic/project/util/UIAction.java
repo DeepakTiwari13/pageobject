@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.common.io.Files;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 
 public class UIAction {
@@ -147,5 +148,12 @@ public class UIAction {
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
-	
+
+	@Attachment
+	 public byte[] attachScreenShotToReport(){
+	    logger.info("Attaching screenshot to report ");
+	    TakesScreenshot photo = ((TakesScreenshot) driver);
+		byte[] file = photo.getScreenshotAs(OutputType.BYTES);
+		return file;
+	    }
 }
