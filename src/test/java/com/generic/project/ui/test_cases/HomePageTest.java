@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Arrays;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
@@ -93,9 +91,9 @@ public class HomePageTest extends BasicClass{
 	@Link("https://www.atlassian.com/software/jira5")
 	@Description("Description for parameterized test 5")
 	@Test(priority=5,dataProvider = "csvData")
-	public void testFive(Object getData) {
+	public void testFive(Object [] getData) {
 		logger.info("Inside parameterized test five ");
-		logger.info("Data from csv file"+getData);
+		logger.info("Data from csv file --"+getData[0]);
 	}
 	
 	@DataProvider(name = "csvData")
