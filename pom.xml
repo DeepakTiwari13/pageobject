@@ -37,12 +37,12 @@
 			<version>3.141.59</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
-      <dependency> 
+     <!--  <dependency> 
 			<groupId>org.testng</groupId>
 			 <artifactId>testng</artifactId> 
 			<version>6.14.3</version> 
 			<scope>test</scope> 
-		</dependency>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
@@ -83,7 +83,13 @@
            <artifactId>opencsv</artifactId> 
            <version>4.0</version> 
      </dependency> 
-  </dependencies>
+     <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+      <dependency>
+           <groupId>org.yaml</groupId>
+           <artifactId>snakeyaml</artifactId>
+           <version>1.26</version>
+      </dependency>
+   </dependencies>
 
 	<build>
 	<pluginManagement><!-- lock down plugins versions to avoid using Maven defaults 
