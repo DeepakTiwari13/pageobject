@@ -88,18 +88,19 @@ public class HomePageTest extends BasicClass{
 		act.attachScreenShotToReport();
 	}
 	
-	@Link("https://www.atlassian.com/software/jira5")
-	@Description("Description for parameterized test 5")
-	@Test(priority=5,dataProvider = "csvData")
-	public void testFive(Object [] getData) {
-		logger.info("Inside parameterized test five ");
-		logger.info("Data from csv file --"+getData[0]);
-	}
-	
-	@DataProvider(name = "csvData")
-	public Object[] sendData() throws FileNotFoundException {
-		return read.readCsvLineByLine("home_page");
-	}
+	  @Link("https://www.atlassian.com/software/jira5")
+	  @Description("Description for parameterized test 5")
+	  @Test(priority=5,dataProvider = "csvData") 
+	  public void testFive(Object [] getData) { 
+	  logger.info("Inside parameterized test five ");
+	  logger.info("Data from csv file --"+getData[0]); 
+	  }
+	  
+	  @DataProvider(name = "csvData") 
+	  public Object[] sendData() throws FileNotFoundException { 
+		  return read.readCsvLineByLine("home_page"); 
+	  }
+	 
 	@AfterTest
 	public void cleanUp() {
 		db.closeDbConnection(conn, stmt, rs, pStmt);

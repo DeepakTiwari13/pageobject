@@ -37,10 +37,10 @@
 			<version>3.141.59</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
-		<dependency> 
+      <dependency> 
 			<groupId>org.testng</groupId>
 			 <artifactId>testng</artifactId> 
-			<version>7.1.0</version> 
+			<version>6.14.3</version> 
 			<scope>test</scope> 
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
@@ -115,6 +115,16 @@
 				<version>2.19.1</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
+						<systemProperties>
+								<property>
+									<name>test.environment</name>
+									<value> ${test.environment}</value>
+								</property>
+									<property>
+									<name>test.dbPassword</name>
+									<value> ${test.dbPassword}</value>
+								</property>
+						</systemProperties>
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>

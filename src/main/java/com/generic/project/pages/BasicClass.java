@@ -16,6 +16,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import com.generic.project.util.Configuration;
+
 public class BasicClass {
 
     static Logger logger = Logger.getLogger(BasicClass.class); 
@@ -97,7 +99,7 @@ public class BasicClass {
 	public void login() {
 		logger.info("Inside login function");
 		driver.manage().window().maximize();
-		driver.get("https://www.saama.com/");
+		driver.get(Configuration.getInstance().getProperty("url"));
 	}
 
 	public void logout() {

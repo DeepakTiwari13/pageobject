@@ -1,0 +1,23 @@
+local:
+  url: https://www.saama.com/
+  database:
+  dbService:
+  username:
+  passwrod:
+  driver: local
+
+test:
+  url: https://www.saama.com/case-studies/
+  database:
+  dbService:
+  username:
+  passwrod:
+  driver : grid
+
+stage:
+  url: https://www.saama.com/whitepapers/
+  database:
+  dbService:
+  username:
+  passwrod:
+  driver: grid

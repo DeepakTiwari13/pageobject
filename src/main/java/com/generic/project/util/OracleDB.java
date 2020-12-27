@@ -13,11 +13,17 @@ import org.apache.log4j.Logger;
 public class OracleDB {
 	
     static Logger logger = Logger.getLogger(OracleDB.class); 
+    
+    private static final transient String ROOT_ENV_DBPASS = (System.getProperty("test.dbPassword")) == null
+			|| (System.getProperty("test.dbPassword").isEmpty()) ? "test" : (System.getProperty("test.dbPassword"));
 
 	public Connection makeConnectionWithDB() {
 		Connection conn = null;
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
+			Configuration.getInstance().getProperty("database");
+			Configuration.getInstance().getProperty("dbService");
+			Configuration.getInstance().getProperty("username");
 			String dbURL = "jdbc:oracle:thin:tiger/scott@localhost:1521:productDB";
 			conn = DriverManager.getConnection(dbURL);
 			if(conn!= null) {
