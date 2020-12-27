@@ -15,7 +15,7 @@ public class APITest {
 	
 	@Link("https://www.atlassian.com/software/jira6")
 	@Description("Description for assignment test 6")
-	@Test(priority=1,invocationCount=11)
+	@Test(priority=1,invocationCount=2)
 	public void testApiOne() {
 		logger.info("Inside api test case one");
 	}

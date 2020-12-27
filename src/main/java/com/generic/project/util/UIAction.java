@@ -13,6 +13,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.common.io.Files;
@@ -60,11 +61,21 @@ public class UIAction {
 		} else
 			return false;
 	}
+	
+	@Step("Checking element is present or not {0} ")
+	public boolean isElementPresent(WebElement element) {
+		   if(element!=null) {
+		    	if(getElement(element).isDisplayed() && getElement(element).isEnabled()) {
+			    return true;
+		    }else 
+		             return false;
+		    } else 
+			        return false;
+	 }
 
-	@Step("Returning webelement  {0} ")
 	public WebElement getElement(WebElement ele) {
 		try {
-			logger.debug("Inside wait function");
+			logger.debug("Inside get element function");
 			WebDriverWait wait = new WebDriverWait(driver, 20);
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			highlightElement(ele);
@@ -101,7 +112,6 @@ public class UIAction {
 		getElement(element).sendKeys(data);
 	}
 
-	@Step("Highlighting webelement  {0} ")
 	public void highlightElement(WebElement element) {
 		logger.debug("Highlighting element "+element);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -140,6 +150,13 @@ public class UIAction {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	@Step("Hovering the mouse over {}")
+	public void mouseHover(WebElement ele) {
+        Actions actions = new Actions(driver);
+        WebElement elementToHover = getElement(ele);
+    	actions.moveToElement(elementToHover).perform();
 	}
 	
 	@Step("Returning year month date with hour minute second ")
