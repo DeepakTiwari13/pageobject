@@ -12,13 +12,13 @@ public class HomePage {
 	WebDriver driver;
 	UIAction act;
     static Logger logger = Logger.getLogger(HomePage.class); 
-    ResourcesMenu rMenu;
+    GlobalMenu gMenu;
 	
 	public HomePage(WebDriver driver) {
 		logger.info("Inside HomePage constructor ");
 		this.driver = driver;
 		act = new UIAction(driver);
-	    rMenu = new ResourcesMenu(driver);
+		gMenu = new GlobalMenu(driver);
 		PageFactory.initElements(driver, this);
 	}
 
@@ -59,9 +59,8 @@ public class HomePage {
 	@FindBy(xpath = "//div[@class='col-lg-4 col-md-6 col-12'][3]//a[@class='caseStudyBlock']")
 	WebElement dataTransParencyLink;
 	
-	public ResourcesMenu openResourceMenu() {
-		act.mouseHover(resourceLink);
-		return rMenu;
+	public GlobalMenu accesGlobalMenu() {
+		return gMenu;
 	}
 	
 	public boolean allUiElementsOnHomePage() {

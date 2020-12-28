@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 import com.generic.project.pages.BasicClass;
 import com.generic.project.pages.Blog;
 import com.generic.project.pages.CaseStudy;
+import com.generic.project.pages.GlobalMenu;
 import com.generic.project.pages.HomePage;
 import com.generic.project.pages.ResourcesMenu;
 import com.generic.project.pages.WhitePapers;
@@ -41,12 +42,14 @@ public class HomePageTest extends BasicClass{
 	PreparedStatement pStmt;
     static Logger logger = Logger.getLogger(HomePageTest.class); 
     HomePage hPage;
-    ResourcesMenu menu;
+    GlobalMenu gMenu;
+    ResourcesMenu rMenu;
 
 	@BeforeTest
 	public void setUp() {
 		driver  = launch_browser("Chrome");
 		hPage = new HomePage(driver);
+		gMenu = new GlobalMenu(driver);
 		act = new UIAction(driver);
 		db = new OracleDB();
 		read = new ReadFile();
@@ -61,8 +64,9 @@ public class HomePageTest extends BasicClass{
 		SingleTon sTon1 = SingleTon.getInstance();
 		int hCode1 = sTon1.hashCode();
 		logger.info("Hash code for Singleton class object one "+hCode1);
-		menu  = hPage.openResourceMenu();
-		CaseStudy cStudy =menu.navigateToCaseStudy();
+		gMenu  = hPage.accesGlobalMenu();
+		rMenu = gMenu.openResourceMenu();
+		CaseStudy cStudy =rMenu.navigateToCaseStudy();
 		act.attachScreenShotToReport();
 		cStudy.navigateToHomePage();
 	}
@@ -74,8 +78,9 @@ public class HomePageTest extends BasicClass{
 		  logger.info("Inside test two ");
 	 	  SingleTon sTon2 = SingleTon.getInstance(); int hCode2 = sTon2.hashCode();
 	      logger.info("Hash code for Singleton class object two "+hCode2);
-          menu  = hPage.openResourceMenu();
-          WhitePapers wPapers =menu.navigateToWhitePapers();
+	      gMenu  = hPage.accesGlobalMenu();
+		  rMenu = gMenu.openResourceMenu();
+		  WhitePapers wPapers =rMenu.navigateToWhitePapers();
 	      act.attachScreenShotToReport();
           wPapers.navigateToHomePage();
 	 // db.getDBResultUsingPreparedStatement(conn, pStmt, rs, query, val1, val2);
@@ -89,8 +94,9 @@ public class HomePageTest extends BasicClass{
 		  SingleTon sTon3 = SingleTon.getInstance();
 		  int hCode3 = sTon3.hashCode();
 		  logger.info("Hash code for Singleton class object three "+hCode3);
-          menu  = hPage.openResourceMenu();
-          Blog blog = menu.navigateToBlog();
+		  gMenu  = hPage.accesGlobalMenu();
+		  rMenu = gMenu.openResourceMenu();
+          Blog blog = rMenu.navigateToBlog();
 		  act.attachScreenShotToReport();
 		  blog.navigateToHomePage();
 	  }
