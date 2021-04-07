@@ -1,0 +1,26 @@
+local:
+  url: https://demo.midtrans.com/
+  database:
+  dbService:
+  username:
+  passwrod:
+  driver: local
+  successful_txn_msg: //*[text()='Thank you for your purchase.']
+
+test:
+  url: https://demo.midtrans.com/
+  database:
+  dbService:
+  username:
+  passwrod:
+  driver : grid
+  successful_txn_msg: //*[text()='Thank you for your purchase.']
+
+stage:
+  url: https://demo.midtrans.com/
+  database:
+  dbService:
+  username:
+  passwrod:
+  driver: grid
+  successful_txn_msg: //*[text()='Thank you for your purchase.']

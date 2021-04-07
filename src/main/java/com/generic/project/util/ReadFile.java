@@ -14,7 +14,7 @@ public class ReadFile {
 	FileReader filereader;
 	String file;
 
-	public Object[] readCsvLineByLine(String fName) {
+	public Object[] readCsvLineByLine(String fName) throws IOException {
 		file = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator
 				+ "resources" + File.separator + "TestData" + File.separator + fName+".csv";
 		try {
@@ -33,6 +33,8 @@ public class ReadFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		filereader.close();
+		csvReader.close();
 		return nextRecord;
 	}
 }

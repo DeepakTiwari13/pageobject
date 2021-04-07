@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.lang.model.util.Elements;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,6 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.common.io.Files;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 
 public class UIAction {
@@ -64,7 +67,7 @@ public class UIAction {
 	public WebElement getElement(WebElement ele) {
 		try {
 			logger.debug("Inside wait function");
-			WebDriverWait wait = new WebDriverWait(driver, 20);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			highlightElement(ele);
 		} catch (Exception e) {
@@ -94,17 +97,18 @@ public class UIAction {
 		e.click();
 	}
 	
-	@Step("Setting data {0} on web element {1} ")
+//	@Step("Setting data {0} on web element {1} ")
 	public void setData(String data,WebElement element) {
 		logger.debug("sending "+data+" on "+element);
+		getElement(element).clear();
 		getElement(element).sendKeys(data);
 	}
 
-	@Step("Highlighting webelement  {0} ")
+//	@Step("Highlighting webelement  {0} ")
 	public void highlightElement(WebElement element) {
 		logger.debug("Highlighting element "+element);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
+		js.executeScript("arguments[0].setAttribute('style', 'background: green; border: 2px solid red;');", element);
 	}
 	
 	@Step("Scrolling page till bottom ")
@@ -141,11 +145,32 @@ public class UIAction {
 		}
 	}
 	
-	@Step("Returning year month date with hour minute second ")
+//	@Step("Returning year month date with hour minute second ")
 	public String getDateTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
 	
+	@Step("Switching to frame  {0} ")
+	public void switchToFrame(WebElement element) {
+		logger.debug("Switching to frame "+element);
+		driver.switchTo().frame(element);
+	}	
+	
+	@Step("Checking wheather element is present or not  {0} ")
+	public boolean isElementPresent(WebElement element) {
+		logger.debug("Is element present "+element);
+		if(getElement(element).isDisplayed()) {
+			return true;
+		} else 
+			return false;
+	}	
+	@Attachment
+	 public byte[] attachScreenShotToReport(){
+	    logger.info("Attaching screenshot to report ");
+	    TakesScreenshot photo = ((TakesScreenshot) driver);
+		byte[] file = photo.getScreenshotAs(OutputType.BYTES);
+		return file;
+	    }
 }
